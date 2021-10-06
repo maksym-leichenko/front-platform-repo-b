@@ -1,0 +1,54 @@
+name: AutoPublishing according release tag
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    name: 'Runner'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: ./.github/actions/autoPublishing
+        id: getReleaseTag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/checkout@v2
+        if: steps.getReleaseTag.outputs.releaseBranch
+        with:
+          ref: ${{ steps.getReleaseTag.outputs.releaseBranch }}
+
+      - name: set Git User
+        if: steps.getReleaseTag.outputs.releaseBranch
+        uses: fregante/setup-git-user@v1
+
+      - name: Setup NPM Registry
+        if: steps.getReleaseTag.outputs.releaseBranch
+        run: |
+          npm config set registry https://artifactory.infrateam.xyz/api/npm/npm/
+          echo "//artifactory.infrateam.xyz/api/npm/npm/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+
+#      - name: Install Dependencies
+#        if: steps.getReleaseTag.outputs.releaseTag
+#        run: yarn install --ignore-engines --frozen-lockfile --ignore-optional --silent
+
+      - name: publishing
+        if: steps.getReleaseTag.outputs.releaseTag
+        run: |
+          rm -rf .git/hooks
+          git push --delete origin ${{ steps.getReleaseTag.outputs.releaseTag }}
+          npm --no-git-tag-version version ${{ steps.getReleaseTag.outputs.releaseTag }}
+          git add -A
+          git commit -m 'v${{ steps.getReleaseTag.outputs.releaseTag }} [skip ci]'
+          git push
+
+          git tag -d ${{ steps.getReleaseTag.outputs.releaseTag }}
+          git push origin :refs/tags/${{ steps.getReleaseTag.outputs.releaseTag }}
+          git tag ${{ steps.getReleaseTag.outputs.releaseTag }}
+          git push origin ${{ steps.getReleaseTag.outputs.releaseTag }}
+          npm publish --tag ${{ steps.getReleaseTag.outputs.releaseBranch }}

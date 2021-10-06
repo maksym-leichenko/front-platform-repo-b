@@ -1,0 +1,31 @@
+name: Make release tag latest
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup registry
+        run: |
+          npm config set registry https://artifactory.infrateam.xyz/api/npm/npm/
+          npm config set always-auth true
+          echo "//artifactory.infrateam.xyz/api/npm/npm/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+
+      - uses: ./.github/actions/makeLatest
+        id: getReleaseTag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ORGANIZATION: airslateinc
+
+      - name: Make dist-tag latest
+        if: steps.getReleaseTag.outputs.releaseTag
+        run: |
+          npm dist-tag add ${{ steps.getReleaseTag.outputs.packageName }}@${{ steps.getReleaseTag.outputs.releaseTag }} latest
