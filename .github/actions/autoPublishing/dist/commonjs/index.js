@@ -6278,6 +6278,8 @@ var github$2 = /*#__PURE__*/Object.freeze({
 	context: github_2
 });
 
+/* eslint-disable no-console */
+
 const { context } = github$2;
 const { repository } = context.payload;
 const { owner } = repository;
@@ -6286,15 +6288,21 @@ const gh = github_1(process.env.GITHUB_TOKEN);
 const args = { owner: owner.name || owner.login, repo: repository.name };
 
 (async function run() {
-  const releaseTag = context.payload.ref.replace('refs/tags/', '');
+  const releaseVersion = context.payload.ref.replace('refs/tags/', '');
   const regex = new RegExp(/^\d+\.\d+\.\d+$/);
 
-  if (regex.test(releaseTag)) {
-    const release = await gh.rest.repos.getReleaseByTag({ ...args, tag: releaseTag });
+  if (regex.test(releaseVersion)) {
+    const release = await gh.rest.repos.getReleaseByTag({ ...args, tag: releaseVersion });
 
     const releaseBranch = release.data.target_commitish;
+    const publishTag = release.data.target_commitish.replace('/', '-');
 
-    core_14('releaseTag', releaseTag);
+    console.log('-----> releaseVersion', releaseVersion);
+    console.log('-----> releaseBranch', releaseBranch);
+    console.log('-----> publishTag', publishTag);
+
+    core_14('releaseVersion', releaseVersion);
     core_14('releaseBranch', releaseBranch);
+    core_14('publishTag', publishTag);
   }
 }());

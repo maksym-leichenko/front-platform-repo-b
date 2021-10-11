@@ -6278,6 +6278,8 @@ var github$2 = /*#__PURE__*/Object.freeze({
 	context: github_2
 });
 
+/* eslint-disable no-console */
+
 const { context } = github$2;
 const { repository } = context.payload;
 const { owner } = repository;
@@ -6290,6 +6292,9 @@ const args = { owner: owner.name || owner.login, repo: repository.name };
   const releaseTag = tags.find(
     ({ commit }) => commit.sha === context.payload.commits[context.payload.commits.length - 2].id,
   );
+
+  console.log('----> releaseTag.name', releaseTag);
+  console.log('----> packageName.name', repository);
 
   if (releaseTag) {
     core_14('releaseTag', releaseTag.name);
