@@ -32,7 +32,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f8151705-997e-4da9-8195-084f8b889aaf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.github/workflows/autoPublishing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/autoPublishing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +85,7 @@
       <updated>1633526292237</updated>
       <workItem from="1633526293438" duration="1212000" />
       <workItem from="1633596854040" duration="2343000" />
-      <workItem from="1633933932690" duration="2504000" />
+      <workItem from="1633933932690" duration="2582000" />
     </task>
     <servers />
   </component>
