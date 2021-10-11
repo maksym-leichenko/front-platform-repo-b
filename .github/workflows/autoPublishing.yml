@@ -1,4 +1,4 @@
-name: AutoPublishing according release tag
+name: AutoPublishing according to release tag
 
 on:
   push:
@@ -13,7 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: ./.github/actions/autoPublishing
+      - uses: Zinchenko-Andrii/gh-action-test@v1.1
+        name: Get release branch
         id: getReleaseTag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -23,32 +24,36 @@ jobs:
         with:
           ref: ${{ steps.getReleaseTag.outputs.releaseBranch }}
 
-      - name: set Git User
+      - name: Set git user
         if: steps.getReleaseTag.outputs.releaseBranch
         uses: fregante/setup-git-user@v1
 
-      - name: Setup NPM Registry
+      - name: Setup npm registry
         if: steps.getReleaseTag.outputs.releaseBranch
         run: |
           npm config set registry https://artifactory.infrateam.xyz/api/npm/npm/
           echo "//artifactory.infrateam.xyz/api/npm/npm/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
 
-#      - name: Install Dependencies
-#        if: steps.getReleaseTag.outputs.releaseTag
+#      - name: Install dependencies
+#        if: steps.getReleaseTag.outputs.releaseVersion
 #        run: yarn install --ignore-engines --frozen-lockfile --ignore-optional --silent
 
-      - name: publishing
-        if: steps.getReleaseTag.outputs.releaseTag
+#      - name: Build
+#        if: steps.getReleaseTag.outputs.releaseVersion
+#        run: yarn build
+
+      - name: Publishing
+        if: steps.getReleaseTag.outputs.releaseVersion
         run: |
           rm -rf .git/hooks
-          git push --delete origin ${{ steps.getReleaseTag.outputs.releaseTag }}
-          npm --no-git-tag-version version ${{ steps.getReleaseTag.outputs.releaseTag }}
+          git push --delete origin ${{ steps.getReleaseTag.outputs.releaseVersion }}
+          npm --no-git-tag-version version ${{ steps.getReleaseTag.outputs.releaseVersion }}
           git add -A
-          git commit -m 'v${{ steps.getReleaseTag.outputs.releaseTag }} [skip ci]'
+          git commit -m 'v${{ steps.getReleaseTag.outputs.releaseVersion }} [skip ci]'
           git push
 
-          git tag -d ${{ steps.getReleaseTag.outputs.releaseTag }}
-          git push origin :refs/tags/${{ steps.getReleaseTag.outputs.releaseTag }}
-          git tag ${{ steps.getReleaseTag.outputs.releaseTag }}
-          git push origin ${{ steps.getReleaseTag.outputs.releaseTag }}
-          npm publish --tag ${{ steps.getReleaseTag.outputs.releaseBranch }}
+          git tag -d ${{ steps.getReleaseTag.outputs.releaseVersion }}
+          git push origin :refs/tags/${{ steps.getReleaseTag.outputs.releaseVersion }}
+          git tag ${{ steps.getReleaseTag.outputs.releaseVersion }}
+          git push origin ${{ steps.getReleaseTag.outputs.releaseVersion }}
+          npm publish --tag ${{ steps.getReleaseTag.outputs.publishTag }}
