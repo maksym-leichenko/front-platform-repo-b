@@ -6278,6 +6278,8 @@ var github$2 = /*#__PURE__*/Object.freeze({
 	context: github_2
 });
 
+/* eslint-disable no-console */
+
 const { context } = github$2;
 const { repository } = context.payload;
 const { owner } = repository;
@@ -6286,13 +6288,21 @@ const gh = github_1(process.env.GITHUB_TOKEN);
 const args = { owner: owner.name || owner.login, repo: repository.name };
 
 (async function run() {
-  const tags = await gh.paginate(gh.repos.listTags, args);
-  const releaseTag = tags.find(
-    ({ commit }) => commit.sha === context.payload.commits[context.payload.commits.length - 2].id,
-  );
+  const releaseVersion = context.payload.ref.replace('refs/tags/', '');
+  const regex = new RegExp(/^\d+\.\d+\.\d+$/);
 
-  if (releaseTag) {
-    core_14('version', releaseTag.name); // 1.1.1
-    core_14('packageName', repository.name); // any package name
+  if (regex.test(releaseVersion)) {
+    const release = await gh.rest.repos.getReleaseByTag({ ...args, tag: releaseVersion });
+
+    const releaseBranch = release.data.target_commitish;
+    const publishTag = release.data.target_commitish.replace('/', '-');
+
+    console.log('-----> version', releaseVersion); // 1.1.1
+    console.log('-----> branch', releaseBranch); // release/arel-11
+    console.log('-----> tag', publishTag); // release-arel-11
+
+    core_14('version', releaseVersion);
+    core_14('branch', releaseBranch);
+    core_14('tag', publishTag);
   }
 }());

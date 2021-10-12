@@ -13,47 +13,47 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: Zinchenko-Andrii/gh-action-test@v1.1
+      - uses: ./.github/actions/autoPublishing
         name: Get release branch
         id: getReleaseTag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/checkout@v2
-        if: steps.getReleaseTag.outputs.releaseBranch
+        if: steps.getReleaseTag.outputs.branch
         with:
-          ref: ${{ steps.getReleaseTag.outputs.releaseBranch }}
+          ref: ${{ steps.getReleaseTag.outputs.branch }}
 
       - name: Set git user
-        if: steps.getReleaseTag.outputs.releaseBranch
+        if: steps.getReleaseTag.outputs.branch
         uses: fregante/setup-git-user@v1
 
       - name: Setup npm registry
-        if: steps.getReleaseTag.outputs.releaseBranch
+        if: steps.getReleaseTag.outputs.branch
         run: |
-          npm config set registry https://artifactory.infrateam.xyz/api/npm/npm/
-          echo "//artifactory.infrateam.xyz/api/npm/npm/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+          npm config set registry https://artifactory.infrateam.xyz/artifactory/api/npm/npm/
+          echo "https://artifactory.infrateam.xyz/artifactory/api/npm/npm/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
 
-#      - name: Install dependencies
-#        if: steps.getReleaseTag.outputs.releaseVersion
-#        run: yarn install --ignore-engines --frozen-lockfile --ignore-optional --silent
+      #      - name: Install dependencies
+      #        if: steps.getReleaseTag.outputs.branch
+      #        run: yarn install --ignore-engines --frozen-lockfile --ignore-optional --silent
 
-#      - name: Build
-#        if: steps.getReleaseTag.outputs.releaseVersion
-#        run: yarn build
+      #      - name: Build
+      #        if: steps.getReleaseTag.outputs.branch
+      #        run: yarn build
 
       - name: Publishing
-        if: steps.getReleaseTag.outputs.releaseVersion
+        if: steps.getReleaseTag.outputs.branch
         run: |
           rm -rf .git/hooks
-          git push --delete origin ${{ steps.getReleaseTag.outputs.releaseVersion }}
-          npm --no-git-tag-version version ${{ steps.getReleaseTag.outputs.releaseVersion }}
+          git push --delete origin ${{ steps.getReleaseTag.outputs.version }}
+          npm --no-git-tag-version version ${{ steps.getReleaseTag.outputs.version }}
           git add -A
-          git commit -m 'v${{ steps.getReleaseTag.outputs.releaseVersion }} [skip ci]'
+          git commit -m '${{ steps.getReleaseTag.outputs.version }} [skip ci]'
           git push
 
-          git tag -d ${{ steps.getReleaseTag.outputs.releaseVersion }}
-          git push origin :refs/tags/${{ steps.getReleaseTag.outputs.releaseVersion }}
-          git tag ${{ steps.getReleaseTag.outputs.releaseVersion }}
-          git push origin ${{ steps.getReleaseTag.outputs.releaseVersion }}
-          npm publish --tag ${{ steps.getReleaseTag.outputs.publishTag }}
+          git tag -d ${{ steps.getReleaseTag.outputs.version }}
+          git push origin :refs/tags/${{ steps.getReleaseTag.outputs.version }}
+          git tag ${{ steps.getReleaseTag.outputs.version }}
+          git push origin ${{ steps.getReleaseTag.outputs.version }}
+          npm publish --tag ${{ steps.getReleaseTag.outputs.tag }}
