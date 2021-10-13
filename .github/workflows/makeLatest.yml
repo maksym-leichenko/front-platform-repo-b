@@ -26,6 +26,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Make dist-tag latest
-        if: steps.getReleaseTag.outputs.version
+#        if: steps.getReleaseTag.outputs.version
         run: |
-          npm dist-tag add ${{ steps.getReleaseTag.outputs.packageName }}@${{ steps.getReleaseTag.outputs.version }} latest
+          npm dist-tag rm ${{ steps.getReleaseTag.outputs.packageName }} ${{ steps.getReleaseTag.outputs.tag }}
+#          npm dist-tag add ${{ steps.getReleaseTag.outputs.packageName }}@${{ steps.getReleaseTag.outputs.version }} latest
