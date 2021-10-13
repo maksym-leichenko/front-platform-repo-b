@@ -6292,9 +6292,13 @@ const args = { owner: owner.name || owner.login, repo: repository.name };
   );
 
     console.log('tags', tags);
-    console.log('context', context);
+    console.log('context', context.payload.head_commit.message);
+    const repoName = repository.full_name.replace(`/${repository.name}`, '');
+    console.log('repoName', repoName);
+    console.log('branchName', context.payload.head_commit.message.split(`${repoName}/`));
 
-  if (releaseTag) {
+
+    if (releaseTag) {
     core_14('version', releaseTag.name); // 1.1.1
     core_14('packageName', repository.name); // any package name
   }
