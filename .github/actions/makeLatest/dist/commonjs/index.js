@@ -6291,11 +6291,8 @@ const args = { owner: owner.name || owner.login, repo: repository.name };
     ({ commit }) => commit.sha === context.payload.commits[context.payload.commits.length - 2].id,
   );
 
-  const publishTag = tags.find(
-      ({ commit }) => commit.sha === context.payload.commits[context.payload.commits.length - 1],
-  );
-
-    console.log('publishTag', publishTag);
+    console.log('tags', tags);
+    console.log('context', context);
 
   if (releaseTag) {
     core_14('version', releaseTag.name); // 1.1.1
