@@ -3942,7 +3942,7 @@ function fetchWrapper(requestOptions) {
         body: requestOptions.body,
         headers: requestOptions.headers,
         redirect: requestOptions.redirect,
-    },
+    }, 
     // `requestOptions.request.agent` type is incompatible
     // see https://github.com/octokit/types.ts/pull/264
     requestOptions.request))
@@ -6291,15 +6291,16 @@ const args = { owner: owner.name || owner.login, repo: repository.name };
     ({ commit }) => commit.sha === context.payload.commits[context.payload.commits.length - 2].id,
   );
 
-    console.log('tags', tags);
-    console.log('context', context.payload.head_commit.message);
-    const repoName = repository.full_name.replace(`/${repository.name}`, '');
-    console.log('repoName', repoName);
-    console.log('branchName', context.payload.head_commit.message.split(`${repoName}/`));
+  const repoName = repository.full_name.replace(`/${repository.name}`, '');
+  const publishTag = context.payload.head_commit.message.split(`${repoName}/`)[1].split('\n')[0].replace('/', '-');
 
+  console.log('---> version', releaseTag.name);
+  console.log('---> tag', publishTag);
+  console.log('---> packageName', repository.name);
 
-    if (releaseTag) {
+  if (releaseTag) {
     core_14('version', releaseTag.name); // 1.1.1
+    core_14('tag', publishTag); // release-are-00
     core_14('packageName', repository.name); // any package name
   }
 }());
