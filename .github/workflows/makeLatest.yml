@@ -13,11 +13,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup registry
-        run: |
-          npm config set registry https://artifactory.infrateam.xyz/artifactory/api/npm/npm/
-          npm config set always-auth true
-          echo "//https://artifactory.infrateam.xyz/artifactory/api/npm/npm/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+      - name: Config npm set registry
+        run: npm config set registry https://artifactory.infrateam.xyz/artifactory/api/npm/npm/
+      - name: Set npm authToken
+        run: echo "//artifactory.infrateam.xyz/api/npm/npm/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+      - name: Set npm new authToken
+        run: echo "//artifactory.infrateam.xyz/artifactory/api/npm/npm/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
 
       - uses: ./.github/actions/makeLatest
         name: Get release tag
@@ -26,7 +27,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Make dist-tag latest
-#        if: steps.getReleaseTag.outputs.version
+        if: steps.getReleaseTag.outputs.version
         run: |
           npm dist-tag rm ${{ steps.getReleaseTag.outputs.packageName }} ${{ steps.getReleaseTag.outputs.tag }}
-#          npm dist-tag add ${{ steps.getReleaseTag.outputs.packageName }}@${{ steps.getReleaseTag.outputs.version }} latest
+          npm dist-tag add ${{ steps.getReleaseTag.outputs.packageName }}@${{ steps.getReleaseTag.outputs.version }} latest
