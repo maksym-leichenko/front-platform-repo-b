@@ -6278,6 +6278,8 @@ var github$2 = /*#__PURE__*/Object.freeze({
 	context: github_2
 });
 
+/* eslint-disable no-console */
+
 const { context } = github$2;
 const { repository } = context.payload;
 const { owner } = repository;
