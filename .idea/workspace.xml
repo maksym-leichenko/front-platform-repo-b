@@ -41,7 +41,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="release/arel-11" />
+        <entry key="$PROJECT_DIR$" value="release/arel-22" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,7 +57,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.github/actions/makeLatest/dist/commonjs" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -69,9 +69,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/.github/actions/makeLatest/dist/commonjs" />
       <recent name="$PROJECT_DIR$/.github/actions/autoPublishing/dist/commonjs" />
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/.github/workflows" />
     </key>
   </component>
@@ -86,7 +86,7 @@
       <workItem from="1633526293438" duration="1212000" />
       <workItem from="1633596854040" duration="2343000" />
       <workItem from="1633933932690" duration="12857000" />
-      <workItem from="1635150253237" duration="609000" />
+      <workItem from="1635150253237" duration="1388000" />
     </task>
     <servers />
   </component>
