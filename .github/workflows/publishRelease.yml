@@ -12,41 +12,46 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.APP_GITHUB_TOKEN }}
 
-      - uses: ./.github/actions/autoPublishing
+      - uses: ./.github/actions/publishRelease
         name: Get release branch
         id: getReleaseTag
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.APP_GITHUB_TOKEN }}
 
       - uses: actions/checkout@v2
         if: steps.getReleaseTag.outputs.branch
         with:
+          token: ${{ secrets.APP_GITHUB_TOKEN }}
           ref: ${{ steps.getReleaseTag.outputs.branch }}
 
-      - name: Set git user
+      - name: Setup registry
+        run: |
+          npm config set registry https://artifactory.infrateam.xyz/artifactory/api/npm/npm/
+          npm config set always-auth true
+          echo "//artifactory.infrateam.xyz/api/npm/npm/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+          echo "//artifactory.infrateam.xyz/artifactory/api/npm/npm/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+
+      - name: Install dependencies
         if: steps.getReleaseTag.outputs.branch
-        uses: fregante/setup-git-user@v1
-
-      - name: Config npm set registry
-        run: npm config set registry https://artifactory.infrateam.xyz/artifactory/api/npm/npm/
-      - name: Set npm authToken
-        run: echo "//artifactory.infrateam.xyz/api/npm/npm/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
-      - name: Set npm new authToken
-        run: echo "//artifactory.infrateam.xyz/artifactory/api/npm/npm/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
-
-      #      - name: Install dependencies
-      #        if: steps.getReleaseTag.outputs.branch
-      #        run: yarn install --ignore-engines --frozen-lockfile --ignore-optional --silent
-
-      #      - name: Build
-      #        if: steps.getReleaseTag.outputs.branch
-      #        run: yarn build
+        run: HUSKY_SKIP_INSTALL=1 yarn --ignore-engines --frozen-lockfile --ignore-optional --silent
+#
+#      - name: Build
+#        if: steps.getReleaseTag.outputs.branch
+#        run: yarn build
 
       - name: Publishing
         if: steps.getReleaseTag.outputs.branch
+        env:
+          AS_CI: true
         run: |
           rm -rf .git/hooks
+
+          git config --global user.name 'platform-deps-update'
+          git config --global user.email 'platform-deps-update@airslate.com'
+
           git push --delete origin ${{ steps.getReleaseTag.outputs.version }}
           npm --no-git-tag-version version ${{ steps.getReleaseTag.outputs.version }}
           git add -A
