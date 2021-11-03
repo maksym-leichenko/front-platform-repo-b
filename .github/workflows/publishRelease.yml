@@ -55,7 +55,7 @@ jobs:
           git push --delete origin ${{ steps.getReleaseTag.outputs.version }}
           npm --no-git-tag-version version ${{ steps.getReleaseTag.outputs.version }}
           git add -A
-          git commit -m '${{ steps.getReleaseTag.outputs.version }} [skip ci]'
+          git commit -m '${{ steps.getReleaseTag.outputs.version }} [skip bot]'
           git push
 
           git tag -d ${{ steps.getReleaseTag.outputs.version }}
