@@ -12,8 +12,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.APP_GITHUB_TOKEN }}
 
       - uses: ./packages/platform-ci/actions/publishRelease
         name: Get release branch
