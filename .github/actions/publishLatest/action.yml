@@ -1,9 +1,0 @@
-name: 'Change npm tag to Latest'
-description: 'Change npm tag to Latest'
-inputs:
-  workspace:
-    description: 'Current workspace directory'
-    required: true
-runs:
-  using: 'node12'
-  main: 'dist/commonjs/index.js'

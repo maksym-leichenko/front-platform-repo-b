@@ -31,7 +31,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8151705-997e-4da9-8195-084f8b889aaf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/lerna.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/package-one/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/package-privat/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/package-privat/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/package-two/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/package-two/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/actions/publishLatest/action.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/actions/publishLatest/dist/commonjs/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/actions/publishRelease/action.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/actions/publishRelease/dist/commonjs/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/publishLatest.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/publishRelease.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/packages/package-one/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.npmrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.yarn-integrity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +74,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.github/actions/makeLatest/dist/commonjs" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -69,9 +86,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/packages" />
       <recent name="$PROJECT_DIR$/.github/actions/makeLatest/dist/commonjs" />
       <recent name="$PROJECT_DIR$/.github/actions/autoPublishing/dist/commonjs" />
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/.github/workflows" />
     </key>
   </component>
@@ -87,6 +105,7 @@
       <workItem from="1633596854040" duration="2343000" />
       <workItem from="1633933932690" duration="12857000" />
       <workItem from="1635150253237" duration="609000" />
+      <workItem from="1637065045104" duration="463000" />
     </task>
     <servers />
   </component>
