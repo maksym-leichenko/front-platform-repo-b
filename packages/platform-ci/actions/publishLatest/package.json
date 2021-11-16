@@ -1,0 +1,19 @@
+{
+  "name": "@airslate/platform-make-latest-action",
+  "version": "1.14.2",
+  "private": true,
+  "description": "This action will change the npm tag to latest",
+  "keywords": [],
+  "homepage": "https://github.com/airslateinc/front-platform-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/airslateinc/front-platform-sdl/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/airslateinc/front-platform-sdk.git"
+  },
+  "license": "MIT",
+  "author": "",
+  "main": "dist/commonjs/index.js",
+  "module": "src/index.js"
+}

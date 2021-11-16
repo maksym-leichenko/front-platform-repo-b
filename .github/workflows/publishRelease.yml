@@ -1,0 +1,68 @@
+name: AutoPublishing according to release tag
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    name: 'Runner'
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.APP_GITHUB_TOKEN }}
+
+      - uses: ../packages/platform-ci/actions/publishRelease/dist/commonjs/index.js
+        name: Get release branch
+        id: getReleaseTag
+        env:
+          GITHUB_TOKEN: ${{ secrets.APP_GITHUB_TOKEN }}
+
+      - uses: actions/checkout@v2
+        if: steps.getReleaseTag.outputs.branch
+        with:
+          token: ${{ secrets.APP_GITHUB_TOKEN }}
+          ref: ${{ steps.getReleaseTag.outputs.branch }}
+
+      - name: Setup registry
+        run: |
+          npm config set registry https://artifactory.infrateam.xyz/artifactory/api/npm/npm/
+          npm config set always-auth true
+          echo "//artifactory.infrateam.xyz/api/npm/npm/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+          echo "//artifactory.infrateam.xyz/artifactory/api/npm/npm/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+
+      - name: Install dependencies
+        if: steps.getReleaseTag.outputs.branch
+        run: npm install --no-save
+      #
+      #      - name: Build
+      #        if: steps.getReleaseTag.outputs.branch
+      #        run: yarn build
+
+      - name: Publishing
+        if: steps.getReleaseTag.outputs.branch
+        env:
+          AS_CI: true
+        run: |
+          rm -rf .git/hooks
+
+          echo '${{ steps.getReleaseTag.outputs.version }} [skip bot]'
+          echo '${{ steps.getReleaseTag.outputs.tag }}'
+
+#          git config --global user.name 'platform-deps-update'
+#          git config --global user.email 'platform-deps-update@airslate.com'
+#
+#          git push --delete origin ${{ steps.getReleaseTag.outputs.version }}
+#          npm --no-git-tag-version version ${{ steps.getReleaseTag.outputs.version }}
+#          git add -A
+#          git commit -m '${{ steps.getReleaseTag.outputs.version }} [skip bot]'
+#          git push
+#
+#          git tag -d ${{ steps.getReleaseTag.outputs.version }}
+#          git push origin :refs/tags/${{ steps.getReleaseTag.outputs.version }}
+#          git tag ${{ steps.getReleaseTag.outputs.version }}
+#          git push origin ${{ steps.getReleaseTag.outputs.version }}
+#          npm publish --tag ${{ steps.getReleaseTag.outputs.tag }}

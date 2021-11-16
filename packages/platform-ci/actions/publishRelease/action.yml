@@ -1,0 +1,9 @@
+name: 'Get release tag'
+description: 'Get release tag'
+inputs:
+  workspace:
+    description: 'Current workspace directory'
+    required: true
+runs:
+  using: 'node12'
+  main: 'dist/commonjs/index.js'

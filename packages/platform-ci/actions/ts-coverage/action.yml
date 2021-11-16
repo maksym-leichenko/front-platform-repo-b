@@ -1,0 +1,5 @@
+name: 'TS Coverage'
+description: 'Check that all new files are TS'
+runs:
+  using: 'node12'
+  main: 'dist/commonjs/index.js'

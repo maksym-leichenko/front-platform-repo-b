@@ -31,7 +31,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8151705-997e-4da9-8195-084f8b889aaf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/packages/package-one/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/package-one/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.github/workflows/publishRelease.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/publishLatest/action.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/publishLatest/dist/commonjs/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/publishLatest/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/publishLatest/publishLatest.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/publishLatest/rollup.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/publishLatest/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/publishRelease/action.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/publishRelease/dist/commonjs/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/publishRelease/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/publishRelease/publishRelease.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/publishRelease/rollup.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/publishRelease/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/ts-coverage/action.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/ts-coverage/dist/commonjs/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/ts-coverage/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/ts-coverage/rollup.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/ts-coverage/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/ts-coverage/src/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/ts-coverage/test/__mock__.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/ts-coverage/test/ts-coverage.spec.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/actions/ts-coverage/ts-coverage.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/platform-ci/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +79,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/packages" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -69,11 +91,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/packages" />
+      <recent name="$PROJECT_DIR$/.github" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/.github/actions/makeLatest/dist/commonjs" />
       <recent name="$PROJECT_DIR$/.github/actions/autoPublishing/dist/commonjs" />
-      <recent name="$PROJECT_DIR$/.github/workflows" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -88,7 +110,7 @@
       <workItem from="1633596854040" duration="2343000" />
       <workItem from="1633933932690" duration="12857000" />
       <workItem from="1635150253237" duration="609000" />
-      <workItem from="1637065045104" duration="770000" />
+      <workItem from="1637065045104" duration="1158000" />
     </task>
     <servers />
   </component>
