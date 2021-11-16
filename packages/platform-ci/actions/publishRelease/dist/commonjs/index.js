@@ -6292,17 +6292,21 @@ const args = { owner: owner.name || owner.login, repo: repository.name };
   const regex = new RegExp(/^\d+\.\d+\.\d+$/);
 
   if (regex.test(releaseVersion)) {
-    const release = await gh.rest.repos.getReleaseByTag({ ...args, tag: releaseVersion });
+    let release = null;
+    try {
+      release = await gh.rest.repos.getReleaseByTag({ ...args, tag: releaseVersion });
+      const releaseBranch = release.data.target_commitish;
+      const publishTag = release.data.target_commitish.replace('/', '-');
 
-    const releaseBranch = release.data.target_commitish;
-    const publishTag = release.data.target_commitish.replace('/', '-');
+      console.log('-----> version', releaseVersion); // 1.1.1
+      console.log('-----> branch', releaseBranch); // release/arel-11
+      console.log('-----> tag', publishTag); // release-arel-11
 
-    console.log('-----> version', releaseVersion); // 1.1.1
-    console.log('-----> branch', releaseBranch); // release/arel-11
-    console.log('-----> tag', publishTag); // release-arel-11
-
-    core_14('version', releaseVersion);
-    core_14('branch', releaseBranch);
-    core_14('tag', publishTag);
+      core_14('version', releaseVersion);
+      core_14('branch', releaseBranch);
+      core_14('tag', publishTag);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }());
