@@ -15,7 +15,7 @@ jobs:
         with:
           token: ${{ secrets.APP_GITHUB_TOKEN }}
 
-      - uses: ../packages/platform-ci/actions/publishRelease/action.yml
+      - uses: ./packages/platform-ci/actions/publishRelease
         name: Get release branch
         id: getReleaseTag
         env:
