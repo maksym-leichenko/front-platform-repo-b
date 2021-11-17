@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.APP_GITHUB_TOKEN }}
 
       - uses: ./packages/platform-ci/actions/publishRelease
         name: Get release branch
@@ -50,17 +52,17 @@ jobs:
           echo '${{ steps.getReleaseTag.outputs.version }} [skip bot]'
           echo '${{ steps.getReleaseTag.outputs.tag }}'
 
-#          git config --global user.name 'platform-deps-update'
-#          git config --global user.email 'platform-deps-update@airslate.com'
-#
-#          git push --delete origin ${{ steps.getReleaseTag.outputs.version }}
-#          npm --no-git-tag-version version ${{ steps.getReleaseTag.outputs.version }}
-#          git add -A
-#          git commit -m '${{ steps.getReleaseTag.outputs.version }} [skip bot]'
-#          git push
-#
-#          git tag -d ${{ steps.getReleaseTag.outputs.version }}
-#          git push origin :refs/tags/${{ steps.getReleaseTag.outputs.version }}
-#          git tag ${{ steps.getReleaseTag.outputs.version }}
-#          git push origin ${{ steps.getReleaseTag.outputs.version }}
-#          npm publish --tag ${{ steps.getReleaseTag.outputs.tag }}
+          git config --global user.name 'platform-deps-update'
+          git config --global user.email 'platform-deps-update@airslate.com'
+
+          git push --delete origin ${{ steps.getReleaseTag.outputs.version }}
+          lerna --no-git-tag-version version ${{ steps.getReleaseTag.outputs.version }}
+          git add -A
+          git commit -m '${{ steps.getReleaseTag.outputs.version }} [skip bot]'
+          git push
+
+          git tag -d ${{ steps.getReleaseTag.outputs.version }}
+          git push origin :refs/tags/${{ steps.getReleaseTag.outputs.version }}
+          git tag ${{ steps.getReleaseTag.outputs.version }}
+          git push origin ${{ steps.getReleaseTag.outputs.version }}
+          lerna publish --dist-tag ${{ steps.getReleaseTag.outputs.tag }}

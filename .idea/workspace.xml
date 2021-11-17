@@ -30,7 +30,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8151705-997e-4da9-8195-084f8b889aaf" name="Default Changelist" comment="" />
+    <list default="true" id="f8151705-997e-4da9-8195-084f8b889aaf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,7 +57,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/packages" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/packages/platform-ci/actions/publishRelease/dist/commonjs" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -67,11 +69,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/platform-ci/actions/publishRelease/dist/commonjs" />
       <recent name="$PROJECT_DIR$/packages" />
       <recent name="$PROJECT_DIR$/.github" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/.github/actions/makeLatest/dist/commonjs" />
-      <recent name="$PROJECT_DIR$/.github/actions/autoPublishing/dist/commonjs" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -86,7 +88,8 @@
       <workItem from="1633596854040" duration="2343000" />
       <workItem from="1633933932690" duration="12857000" />
       <workItem from="1635150253237" duration="609000" />
-      <workItem from="1637065045104" duration="2001000" />
+      <workItem from="1637065045104" duration="3102000" />
+      <workItem from="1637139706075" duration="730000" />
     </task>
     <servers />
   </component>
