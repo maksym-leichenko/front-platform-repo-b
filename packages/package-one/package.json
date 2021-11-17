@@ -1,6 +1,6 @@
 {
   "name": "front-platform-sdk-package-one",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "description": "This action will publish release package on every new tag",
   "keywords": [],
