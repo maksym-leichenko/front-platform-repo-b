@@ -30,13 +30,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8151705-997e-4da9-8195-084f8b889aaf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/publishRelease.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/publishRelease.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lerna.json" beforeDir="false" afterPath="$PROJECT_DIR$/lerna.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/package-two/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/package-two/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/platform-ci/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/platform-ci/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="f8151705-997e-4da9-8195-084f8b889aaf" name="Default Changelist" comment="" />
+    <list id="47717e78-b550-4463-ba8b-b870202c9508" name="t" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -121,5 +116,13 @@
       <screen x="0" y="25" width="1792" height="1095" />
     </state>
     <state x="100" y="125" width="1592" height="895" key="DiffContextDialog/0.25.1792.1095@0.25.1792.1095" timestamp="1633598444100" />
+    <state x="701" y="195" key="RollbackChangesDialog" timestamp="1637146649213">
+      <screen x="0" y="25" width="1792" height="1095" />
+    </state>
+    <state x="701" y="195" key="RollbackChangesDialog/0.25.1792.1095@0.25.1792.1095" timestamp="1637146649213" />
+    <state x="748" y="483" key="VCS.ChangelistChooser" timestamp="1637146556071">
+      <screen x="0" y="25" width="1792" height="1095" />
+    </state>
+    <state x="748" y="483" key="VCS.ChangelistChooser/0.25.1792.1095@0.25.1792.1095" timestamp="1637146556071" />
   </component>
 </project>
