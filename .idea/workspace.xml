@@ -30,7 +30,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8151705-997e-4da9-8195-084f8b889aaf" name="Default Changelist" comment="" />
+    <list default="true" id="f8151705-997e-4da9-8195-084f8b889aaf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <list id="47717e78-b550-4463-ba8b-b870202c9508" name="t" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,10 +114,10 @@
       <screen x="0" y="25" width="1792" height="1095" />
     </state>
     <state x="360" y="231" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1792.1095@0.25.1792.1095" timestamp="1637143131041" />
-    <state x="100" y="125" width="1592" height="895" key="DiffContextDialog" timestamp="1633598444100">
+    <state x="100" y="125" width="1592" height="895" key="DiffContextDialog" timestamp="1637147041713">
       <screen x="0" y="25" width="1792" height="1095" />
     </state>
-    <state x="100" y="125" width="1592" height="895" key="DiffContextDialog/0.25.1792.1095@0.25.1792.1095" timestamp="1633598444100" />
+    <state x="100" y="125" width="1592" height="895" key="DiffContextDialog/0.25.1792.1095@0.25.1792.1095" timestamp="1637147041713" />
     <state x="701" y="195" key="RollbackChangesDialog" timestamp="1637146649213">
       <screen x="0" y="25" width="1792" height="1095" />
     </state>
