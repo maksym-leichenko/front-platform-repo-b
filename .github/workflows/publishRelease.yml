@@ -65,4 +65,4 @@ jobs:
           git push origin :refs/tags/${{ steps.getReleaseTag.outputs.version }}
           git tag ${{ steps.getReleaseTag.outputs.version }}
           git push origin ${{ steps.getReleaseTag.outputs.version }}
-          lerna publish from-git --yes --dist-tag ${{ steps.getReleaseTag.outputs.tag }}
+          lerna publish --yes --dist-tag ${{ steps.getReleaseTag.outputs.tag }}
