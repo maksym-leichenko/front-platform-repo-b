@@ -1,6 +1,6 @@
 {
   "name": "front-platform-sdk-package-privat",
-  "version": "1.19.11",
+  "version": "1.19.13",
   "private": true,
   "description": "This action will publish release package on every new tag",
   "keywords": [],
