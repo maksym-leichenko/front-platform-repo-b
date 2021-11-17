@@ -1,6 +1,6 @@
 {
   "name": "@airslate/platform-ci",
-  "version": "1.21.0",
+  "version": "1.21.1",
   "private": true,
   "description": "This action will publish release package on every new tag",
   "keywords": [],
