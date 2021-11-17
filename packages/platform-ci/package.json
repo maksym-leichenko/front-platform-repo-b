@@ -6,5 +6,17 @@
   "keywords": [],
   "license": "MIT",
   "author": "",
-  "module": "src/index.js"
+  "module": "src/index.js",
+  "dependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-angular": "^8.3.4",
+    "@semantic-release/git": "^9.0.0",
+    "commitizen": "^4.0.3",
+    "fs-extra": "^9.0.0",
+    "git-branch": "^2.0.1",
+    "husky": "^4.2.3",
+    "minimatch": "^3.0.4",
+    "semantic-release": "^17.1.0",
+    "yargs": "^15.3.1"
+  }
 }

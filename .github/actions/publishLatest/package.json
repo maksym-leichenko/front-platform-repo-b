@@ -1,0 +1,13 @@
+{
+  "name": "@airslate/platform-platform-publish-latest",
+  "version": "1.13.0",
+  "private": true,
+  "keywords": [],
+  "author": "",
+  "main": "dist/commonjs/index.js",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0",
+    "@airslate/platform-dev-tools": "6.2.14"
+  }
+}
