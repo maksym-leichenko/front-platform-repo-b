@@ -56,7 +56,7 @@ jobs:
           git config --global user.email 'platform-deps-update@airslate.com'
 
           git push --delete origin ${{ steps.getReleaseTag.outputs.version }}
-          lerna publish --no-git-tag-version --yes ${{ steps.getReleaseTag.outputs.version }}
+          lerna publish --no-git-tag-version --yes --dist-tag ${{ steps.getReleaseTag.outputs.tag }} ${{ steps.getReleaseTag.outputs.version }}
           git add -A
           git commit -m '${{ steps.getReleaseTag.outputs.version }} [skip bot]'
           git push
