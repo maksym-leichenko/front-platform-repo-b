@@ -56,7 +56,7 @@ jobs:
           git config --global user.email 'platform-deps-update@airslate.com'
 
           git push --delete origin ${{ steps.getReleaseTag.outputs.version }}
-          lerna version --no-git-tag-version --yes ${{ steps.getReleaseTag.outputs.version }}
+          lerna publish --no-git-tag-version --yes ${{ steps.getReleaseTag.outputs.version }}
           git add -A
           git commit -m '${{ steps.getReleaseTag.outputs.version }} [skip bot]'
           git push
@@ -65,4 +65,3 @@ jobs:
           git push origin :refs/tags/${{ steps.getReleaseTag.outputs.version }}
           git tag ${{ steps.getReleaseTag.outputs.version }}
           git push origin ${{ steps.getReleaseTag.outputs.version }}
-          lerna publish --no-git-tag-version --yes ${{ steps.getReleaseTag.outputs.version }}
