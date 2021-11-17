@@ -4,5 +4,15 @@
   ],
   "version": "1.0.1",
   "npmClient": "yarn",
-  "useWorkspaces": true
+  "useWorkspaces": true,
+  "command": {
+    "version": {
+      "createRelease": "github",
+      "conventionalCommits": true,
+      "message": "chore(release): publish"
+    },
+    "publish": {
+      "registry": "https://artifactory.infrateam.xyz/artifactory/api/npm/npm/"
+    }
+  }
 }
