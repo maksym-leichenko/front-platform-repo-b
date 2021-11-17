@@ -1,0 +1,19 @@
+{
+  "name": "@airslate/platform-auto-publishing-action",
+  "version": "1.14.2",
+  "private": true,
+  "description": "This action will publish release package on every new tag",
+  "keywords": [],
+  "homepage": "https://github.com/airslateinc/front-platform-sdk#readme",
+  "bugs": {
+    "url": "https://github.com/airslateinc/front-platform-sdk/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/airslateinc/front-platform-sdk.git"
+  },
+  "license": "MIT",
+  "author": "",
+  "main": "dist/commonjs/index.js",
+  "module": "src/index.js"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "front-platform-sdk-package-two",
+  "version": "1.19.9",
+  "private": false,
+  "description": "This action will publish release package on every new tag",
+  "keywords": [],
+  "license": "MIT",
+  "author": "",
+  "module": "src/index.js"
+}

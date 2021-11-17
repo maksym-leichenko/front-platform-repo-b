@@ -547,9 +547,9 @@ core.warning;
 core.error;
 core.debug;
 core.isDebug;
-core.setFailed;
+var core_12 = core.setFailed;
 core.setCommandEcho;
-var core_14 = core.setOutput;
+core.setOutput;
 core.getBooleanInput;
 core.getMultilineInput;
 core.getInput;
@@ -6278,7 +6278,43 @@ var github$2 = /*#__PURE__*/Object.freeze({
 	context: github_2
 });
 
-/* eslint-disable no-console */
+const mapCommitData = (files) => (
+  files.map(file => {
+    const extension = file.filename.split('.').pop();
+    return ({
+      extension,
+      status: file.status,
+      name: file.filename.replace(`.${extension}`, ''),
+    });
+  })
+);
+
+const filterFiles = (files, ignore) => files
+  .filter(file => (
+    JSON.parse(ignore).every((rule) => !file.name.includes(rule))
+    && file.name.includes('src')
+    && (file.status === 'added' || file.status === 'renamed')
+  ));
+
+const checkFiles = (files) => {
+  const filesWithError = {};
+
+  files.forEach(file => {
+    if (file.status === 'added' && ['js', 'jsx'].includes(file.extension)) {
+      filesWithError[file.name] = file;
+    }
+    if (file.status === 'renamed') {
+      if (['js', 'jsx'].includes(file.extension)) {
+        filesWithError[file.name] = file;
+      }
+      if (['ts', 'tsx'].includes(file.extension)) {
+        delete filesWithError[file.name];
+      }
+    }
+  });
+
+  return Object.values(filesWithError);
+};
 
 const { context } = github$2;
 const { repository } = context.payload;
@@ -6287,22 +6323,21 @@ const { owner } = repository;
 const gh = github_1(process.env.GITHUB_TOKEN);
 const args = { owner: owner.name || owner.login, repo: repository.name };
 
+const getCommits = () => (
+  gh.pulls.listFiles({ ...args, pull_number: context.payload.pull_request.number })
+);
+
 (async function run() {
-  const releaseVersion = context.payload.ref.replace('refs/tags/', '');
-  const regex = new RegExp(/^\d+\.\d+\.\d+$/);
-
-  if (regex.test(releaseVersion)) {
-    const release = await gh.rest.repos.getReleaseByTag({ ...args, tag: releaseVersion });
-
-    const releaseBranch = release.data.target_commitish;
-    const publishTag = release.data.target_commitish.replace('/', '-');
-
-    console.log('-----> version', releaseVersion); // 1.1.1
-    console.log('-----> branch', releaseBranch); // release/arel-11
-    console.log('-----> tag', publishTag); // release-arel-11
-
-    core_14('version', releaseVersion);
-    core_14('branch', releaseBranch);
-    core_14('tag', publishTag);
-  }
+  getCommits().then((res) => {
+    Promise.resolve(res.data)
+      .then(mapCommitData)
+      .then(files => filterFiles(files, process.env.IGNORE))
+      .then(checkFiles)
+      .then(errorsFiles => {
+        if (errorsFiles.length) {
+          const errors = errorsFiles.map(file => file.name);
+          core_12(`All new files should be in TS. Please fix the next files:\n${errors.join('\n')}`);
+        }
+      });
+  });
 }());

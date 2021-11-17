@@ -30,4 +30,4 @@ jobs:
       - name: Make dist-tag latest
         if: steps.getReleaseTag.outputs.version
         run: |
-          lerna publish --no-git-tag-version --yes --dist-tag latest ${{ steps.getReleaseTag.outputs.version }}
+          npm dist-tag add ${{ steps.getReleaseTag.outputs.packageName }}@${{ steps.getReleaseTag.outputs.version }} latest
