@@ -1,1 +1,1 @@
-console.log('privat')
+console.log('privat111')
