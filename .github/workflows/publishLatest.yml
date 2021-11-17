@@ -21,13 +21,8 @@ jobs:
           echo "//artifactory.infrateam.xyz/api/npm/npm/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
           echo "//artifactory.infrateam.xyz/artifactory/api/npm/npm/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
 
-      - uses: ./packages/platform-ci/actions/publishLatest
+      - uses: ./.github/actions/publishLatest
         name: Get release tag
         id: getReleaseTag
         env:
           GITHUB_TOKEN: ${{ secrets.APP_GITHUB_TOKEN }}
-
-      - name: Make dist-tag latest
-        if: steps.getReleaseTag.outputs.version
-        run: |
-          lerna publish --no-git-tag-version --yes --dist-tag latest ${{ steps.getReleaseTag.outputs.version }}
