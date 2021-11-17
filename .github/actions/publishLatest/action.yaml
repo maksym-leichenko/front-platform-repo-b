@@ -1,0 +1,5 @@
+name: 'publish latest'
+description: 'publish latest'
+runs:
+  using: 'node12'
+  main: 'dist/commonjs/index.js'
