@@ -31,6 +31,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8151705-997e-4da9-8195-084f8b889aaf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/publishLatest.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/publishLatest.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <list id="47717e78-b550-4463-ba8b-b870202c9508" name="t" comment="" />
